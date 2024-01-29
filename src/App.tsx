@@ -1,15 +1,16 @@
-import { NextUIProvider, Button } from "@nextui-org/react";
+// import { NextUIProvider, Button } from "@nextui-org/react";
+import { useNavigate, RouterProvider } from "@tanstack/react-router";
+
+import { router } from "./router";
 
 function App() {
+  // const navigate = useNavigate();
+
   return (
-    <NextUIProvider>
-      <div className="bg-black p-3 h-[100vh]">
-        <div className="flex gap-3">
-          <Button color="primary">hello</Button>
-          <Button color="secondary">bello</Button>
-        </div>
-      </div>
-    </NextUIProvider>
+    // <NextUIProvider navigate={navigate}>
+    // <NextUIProvider>
+    <RouterProvider router={router} />
+    // </NextUIProvider>
   );
 }
 
