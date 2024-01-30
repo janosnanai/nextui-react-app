@@ -37,9 +37,9 @@ const indexRoute = createRoute({
   ),
 });
 
-const otherRoute = createRoute({
+const counterRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "other-page",
+  path: "counter-page",
   component: () => (
     <>
       <CounterPage />
@@ -47,6 +47,6 @@ const otherRoute = createRoute({
   ),
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, otherRoute]);
+const routeTree = rootRoute.addChildren([indexRoute, counterRoute]);
 
 export const router = createRouter({ routeTree });

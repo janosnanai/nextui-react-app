@@ -35,7 +35,7 @@ function Header() {
       <Tab key="/" title="home" />
 
       <Tab
-        key="/other-page"
+        key="/counter-page"
         title={
           <Badge color="primary" content={getBadgeContent()}>
             <div>counter</div>
