@@ -3,12 +3,13 @@ import {
   createRootRoute,
   createRoute,
   createRouter,
-  useNavigate,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
-import { NextUIProvider } from "@nextui-org/react";
 
-import HomePage from "./HomePage";
+import Header from "./components/Header";
+import RootLayout from "./components/RootLayout";
+import HomePage from "./components/HomePage";
+import CounterPage from "./components/CounterPage";
 
 declare module "@tanstack/react-router" {
   interface Register {
@@ -16,22 +17,13 @@ declare module "@tanstack/react-router" {
   }
 }
 
-function RootRoute() {
-  const navigate = useNavigate();
-
-  return (
-    <NextUIProvider navigate={navigate}>
-      <Outlet />
-      <TanStackRouterDevtools />
-    </NextUIProvider>
-  );
-}
-
 const rootRoute = createRootRoute({
   component: () => (
-    <>
-      <RootRoute />
-    </>
+    <RootLayout>
+      <Header />
+      <Outlet />
+      <TanStackRouterDevtools />
+    </RootLayout>
   ),
 });
 
@@ -45,6 +37,16 @@ const indexRoute = createRoute({
   ),
 });
 
-const routeTree = rootRoute.addChildren([indexRoute]);
+const otherRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "other-page",
+  component: () => (
+    <>
+      <CounterPage />
+    </>
+  ),
+});
+
+const routeTree = rootRoute.addChildren([indexRoute, otherRoute]);
 
 export const router = createRouter({ routeTree });

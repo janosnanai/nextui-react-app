@@ -1,16 +1,17 @@
-// import { NextUIProvider, Button } from "@nextui-org/react";
-import { useNavigate, RouterProvider } from "@tanstack/react-router";
+import { NextUIProvider } from "@nextui-org/react";
+import { RouterProvider } from "@tanstack/react-router";
 
 import { router } from "./router";
 
 function App() {
-  // const navigate = useNavigate();
+  function navigate(to: string) {
+    router.navigate({ to });
+  }
 
   return (
-    // <NextUIProvider navigate={navigate}>
-    // <NextUIProvider>
-    <RouterProvider router={router} />
-    // </NextUIProvider>
+    <NextUIProvider navigate={navigate}>
+      <RouterProvider router={router} />
+    </NextUIProvider>
   );
 }
 
